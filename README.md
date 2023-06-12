@@ -1,3 +1,7 @@
+npm run dev:server sur le serveur 
+&
+npm run dev sur le local
+
 # Project #10 - Argent Bank API
 
 This codebase contains the code needed to run the backend for Argent Bank.
