@@ -1,10 +1,12 @@
-import React from 'react'
+import MainLayout from "../layouts/MainLayout.jsx"
 
 const Error404 = () => {
   return (
-    <div>
-      <h1>Error404</h1>
-    </div>
+    <MainLayout>
+      <div>
+        <h1>Error404</h1>
+      </div>
+    </MainLayout>
   )
 }
 
