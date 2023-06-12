@@ -1,7 +1,12 @@
 import MainLayout from "../layouts/MainLayout.jsx"
+import {useDispatch} from "react-redux"
+import {signIn} from "../stores/auth.js"
+import {useState} from "react"
 
 const SignIn = () => {
-
+  const [email, setEmail] = useState('tony@stark.com')
+  const [password, setPassword] = useState('password123')
+  const dispatch = useDispatch()
 
   return (
     <MainLayout>
@@ -10,18 +15,33 @@ const SignIn = () => {
         <h1>Sign In</h1>
         <form>
           <div className="input-wrapper">
-            <label htmlFor="username">Username</label>
-            <input type="text" id="username"/>
+            <label>
+              Email
+              <input type="email" value={email} autoComplete="email" onChange={(e) => setEmail(e.target.value)}/>
+            </label>
           </div>
+
           <div className="input-wrapper">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password"/>
+            <label>
+              Password
+              <input type="password" value={password} autoComplete="current-password" onChange={(e) => setPassword(e.target.value)}/>
+            </label>
           </div>
+
           <div className="input-remember">
-            <input type="checkbox" id="remember-me"/>
-            <label htmlFor="remember-me">Remember me</label>
+            <label>
+              <input type="checkbox"/>
+              Remember me
+            </label>
           </div>
-          <a href="./user.html" className="sign-in-button">Sign In</a>
+
+          <button
+            type="button"
+            onClick={() => dispatch(signIn({email, password}))}
+            className="sign-in-button"
+          >
+            Sign In
+          </button>
         </form>
       </section>
     </MainLayout>
