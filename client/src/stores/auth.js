@@ -22,6 +22,9 @@ const authSlice = createSlice({
     [signIn.fulfilled]: (state, {payload}) => {
       state.token = payload
     },
+    [signIn.rejected]: () => {
+      console.log('REJECTED')
+    },
   }
 })
 
