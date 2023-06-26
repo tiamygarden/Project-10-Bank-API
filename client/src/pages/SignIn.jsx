@@ -1,12 +1,27 @@
 import MainLayout from "../layouts/MainLayout.jsx"
 import {useDispatch} from "react-redux"
-import {signIn} from "../stores/auth.js"
+import {signIn, loadProfile} from "../stores/auth.js"
 import {useState} from "react"
+import {store} from "../App.jsx"
 
 const SignIn = () => {
   const [email, setEmail] = useState('tony@stark.com')
   const [password, setPassword] = useState('password123')
+  const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch()
+
+  async function signInAction() {
+    if(isLoading) { return }
+    setIsLoading(true)
+    await dispatch(signIn({email, password}))
+    if(store.getState().auth.token) {
+      await dispatch(loadProfile())
+      if(store.getState().auth.profile) {
+        // todo rediriger vers la page profil
+      }
+    }
+    setIsLoading(false)
+  }
 
   return (
     <MainLayout>
@@ -24,7 +39,8 @@ const SignIn = () => {
           <div className="input-wrapper">
             <label>
               Password
-              <input type="password" value={password} autoComplete="current-password" onChange={(e) => setPassword(e.target.value)}/>
+              <input type="password" value={password} autoComplete="current-password"
+                onChange={(e) => setPassword(e.target.value)}/>
             </label>
           </div>
 
@@ -37,10 +53,11 @@ const SignIn = () => {
 
           <button
             type="button"
-            onClick={() => dispatch(signIn({email, password}))}
+            onClick={signInAction}
             className="sign-in-button"
+            disabled={isLoading}
           >
-            Sign In
+            { isLoading ? 'Loading...': 'Sign In' }
           </button>
         </form>
       </section>
