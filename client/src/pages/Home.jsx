@@ -1,4 +1,4 @@
-import '../App.css'
+import '../styles/App.css'
 import MainLayout from "../layouts/MainLayout.jsx"
 import iconChat from "../assets/img/icon-chat.png"
 import iconMoney from "../assets/img/icon-money.png"

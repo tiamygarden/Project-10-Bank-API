@@ -5,7 +5,7 @@ const MainLayout = ({children}) => {
   return (
     <>
       <Navigation/>
-      <main>{children}</main>
+      <div>{children}</div>
       <Footer/>
     </>
   )

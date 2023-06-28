@@ -1,26 +1,43 @@
-import { NavLink } from "react-router-dom"
-import Home from "../pages/Home"
+import {Link, redirect} from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
 import logo from "../assets/img/argentBankLogo.png"
+import {logout} from "../stores/auth.js"
 
 const Navigation = () => {
+  const profile = useSelector((state) => state.auth.profile)
+  const dispatch = useDispatch()
+
+  function  handleLogout() {
+    dispatch(logout())
+  }
+
+
   return (
-    <div className="header">
-      <div className="main-nav">
-        <NavLink to="/" element={<Home />}>
-          <img src={logo} alt="Argent Bank Logo" className="main-nav-logo-image"/>
-        </NavLink>
-        <h1 className="sr-only">Argent Bank</h1>
-        <ul>
-          <NavLink to="/">
-            <li>Accueil</li>
-          </NavLink>
-          <NavLink to="/sign-in">
-            <li>SignIn</li>
-          </NavLink>
-          <NavLink to="/counter">
-            <li>Counter</li>
-          </NavLink>
-        </ul>
+    <div className="header flex items-center justify-between border">
+      <div className="w-60 ml-5">
+        <Link to="/">
+          <img src={logo} alt="Argent Bank Logo" />
+        </Link>
+      </div>
+
+      <div className="flex items-center justify-around gap-2 mr-5">
+        {profile ? (
+          <>
+            <i className="fa-solid fa-circle-user"></i>
+            <p>{profile.firstName}</p>
+            <i className="fa-solid fa-right-from-bracket"></i>
+            <Link to="/sign-in">
+              <p onClick={handleLogout}>Log Out</p>
+            </Link>
+          </>
+        ) : (
+          <>
+            <i className="fa-solid fa-circle-user"></i>
+            <Link className="flex items-center justify-around gap-2 mr-5" to="/sign-in">
+              <p>Sign In</p>
+            </Link>
+          </>
+        )}
       </div>
     </div>
   )
