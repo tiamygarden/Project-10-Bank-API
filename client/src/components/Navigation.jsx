@@ -1,4 +1,4 @@
-import {Link, redirect} from "react-router-dom"
+import {Link} from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import logo from "../assets/img/argentBankLogo.png"
 import {logout} from "../stores/auth.js"
@@ -10,7 +10,6 @@ const Navigation = () => {
   function  handleLogout() {
     dispatch(logout())
   }
-
 
   return (
     <div className="header flex items-center justify-between border">
@@ -24,10 +23,12 @@ const Navigation = () => {
         {profile ? (
           <>
             <i className="fa-solid fa-circle-user"></i>
-            <p>{profile.firstName}</p>
+            <Link to="/profile">
+              <p>{profile.firstName}</p>
+            </Link>
             <i className="fa-solid fa-right-from-bracket"></i>
             <Link to="/sign-in">
-              <p onClick={handleLogout}>Log Out</p>
+              <p onClick={handleLogout}>Sign Out</p>
             </Link>
           </>
         ) : (

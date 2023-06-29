@@ -1,9 +1,11 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
+import {createAction, createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {api} from "../composable/useApi.jsx"
 
 const initialState = {
   profile: null,
-  token: ''
+  firstName: '',
+  lastName: '',
+  token: localStorage.getItem('token') || ''
 }
 
 export const signIn = createAsyncThunk('auth/signIn', async payload => {
@@ -18,42 +20,40 @@ export const loadProfile = createAsyncThunk('auth/loadProfile', async () => {
   return (await response.json()).body
 })
 
-// export const logout = () => ({
-//   type: 'logout'
-//
-// })
-//
-// const rootReducer = (state, action) => {
-//   if (action.type === 'logout') {
-//     state = undefined
-//   }
-//
-//   return reducer(state, action)
-// }
+export const logout = () => {
+  return(dispatch) =>{
+    dispatch(logoutAction())
+  }
+}
 
-
+const logoutAction = createAction('auth/logout')
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    logout: (state) => {
-      state.token = ''
-    }
-  },
+  reducers: {},
   extraReducers: {
     [signIn.fulfilled]: (state, action) => {
       state.token = action.payload
+      localStorage.setItem('token', action.payload) // Stocke le token dans le local storage
     },
     [signIn.rejected]: () => {
       console.log('REJECTED')
     },
     [loadProfile.fulfilled]: (state, action) => {
       state.profile = action.payload
+      state.firstName = action.payload.firstName
+      state.lastName = action.payload.lastName
+    },
+    [logoutAction]: (state) => {
+      state.profile = null
+      state.firstName = ''
+      state.lastName = ''
+      state.token = ''
+      localStorage.removeItem('token') // Supprime le token du local storage lors de la déconnexion
     }
   }
 })
 
-// export const {setUser} = authSlice.actions
 export default authSlice.reducer
-export const {logout} = authSlice.actions
+// export const {logout} = authSlice.actions

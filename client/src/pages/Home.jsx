@@ -1,9 +1,7 @@
-import '../styles/App.css'
 import MainLayout from "../layouts/MainLayout.jsx"
 import iconChat from "../assets/img/icon-chat.png"
 import iconMoney from "../assets/img/icon-money.png"
 import iconSecurity from "../assets/img/icon-security.png"
-
 
 const Home = () => {
   return (
@@ -20,7 +18,7 @@ const Home = () => {
       <section className="features">
         <h2 className="sr-only">Features</h2>
         <div className="feature-item">
-          <img src={iconChat} alt="Chat Icon" className="feature-icon" />
+          <img src={iconChat} alt="Chat Icon" className="feature-icon h-40 w-40" />
           <h3 className="feature-item-title">You are our #1 priority</h3>
           <p>
             Need to talk to a representative? You can get in touch through our
@@ -31,7 +29,7 @@ const Home = () => {
           <img
             src={iconMoney}
             alt="Chat Icon"
-            className="feature-icon"
+            className="feature-icon h-40 w-40"
           />
           <h3 className="feature-item-title">More savings means higher rates</h3>
           <p>
@@ -42,7 +40,7 @@ const Home = () => {
           <img
             src={iconSecurity}
             alt="Chat Icon"
-            className="feature-icon"
+            className="feature-icon h-40 w-40"
           />
           <h3 className="feature-item-title">Security you can trust</h3>
           <p>
