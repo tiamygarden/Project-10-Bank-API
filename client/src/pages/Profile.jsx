@@ -18,7 +18,7 @@ const Profile = () => {
 
         <h2 className="sr-only">Account</h2>
         <div className="account-content-wrapper">
-          <section className="border border-red md:w-[100%]  h-24 text-left p-4  text-slate-500 text-base bg-white md:flex md:flex-row justify-between items-center md:h-24  s:h-40 s:flex-col">
+          <section className="account">
             <div className="account-content-wrapper">
               <h3 className="account-title">Argent Bank Checking (x8349)</h3>
               <p className="account-amount">$2,082.79</p>
@@ -28,7 +28,7 @@ const Profile = () => {
               <button className="transaction-button" onClick={() => navigate("./account/${account_ID}")}>View transactions</button>
             </div>
           </section>
-          <section className="border border-red md:w-[100%]  h-24 text-left p-4  text-slate-500 text-base bg-white md:flex md:flex-row justify-between items-center md:h-24  s:h-40 s:flex-col">
+          <section className="account">
             <div className="account-content-wrapper">
               <h3 className="account-title">Argent Bank Savings (x6712)</h3>
               <p className="account-amount">$10,928.42</p>
@@ -38,7 +38,7 @@ const Profile = () => {
               <button className="transaction-button" onClick={() => navigate("./account/${account_ID}")}>View transactions</button>
             </div>
           </section>
-          <section className="border border-red md:w-[100%]  h-24 text-left p-4  text-slate-500 text-base bg-white md:flex md:flex-row justify-between items-center md:h-24  s:h-40 s:flex-col">
+          <section className="account">
             <div className="account-content-wrapper">
               <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
               <p className="account-amount">$184.30</p>

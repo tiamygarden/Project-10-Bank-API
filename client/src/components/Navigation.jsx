@@ -13,13 +13,13 @@ const Navigation = () => {
 
   return (
     <div className="header flex items-center justify-between border">
-      <div className="w-60 ml-5">
+      <div className="logo">
         <Link to="/">
           <img src={logo} alt="Argent Bank Logo" />
         </Link>
       </div>
 
-      <div className="flex items-center justify-around gap-2 mr-5">
+      <div className="header-navlinks">
         {profile ? (
           <>
             <i className="fa-solid fa-circle-user"></i>
@@ -27,14 +27,14 @@ const Navigation = () => {
               <p>{profile.firstName}</p>
             </Link>
             <i className="fa-solid fa-right-from-bracket"></i>
-            <Link to="/sign-in">
+            <Link to="/">
               <p onClick={handleLogout}>Sign Out</p>
             </Link>
           </>
         ) : (
           <>
             <i className="fa-solid fa-circle-user"></i>
-            <Link className="flex items-center justify-around gap-2 mr-5" to="/sign-in">
+            <Link to="/sign-in">
               <p>Sign In</p>
             </Link>
           </>
