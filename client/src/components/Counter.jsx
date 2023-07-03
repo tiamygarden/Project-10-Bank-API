@@ -3,7 +3,7 @@ import {decrement, increment, reset} from "../stores/counter.js"
 import MainLayout from "../layouts/MainLayout.jsx"
 
 const Counter = () => {
-  const total = useSelector(state => state.counter).total
+  const total = useSelector(state => state.counter.total)
   const dispatch = useDispatch()
 
   return (

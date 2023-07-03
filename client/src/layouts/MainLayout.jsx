@@ -1,12 +1,12 @@
 import Navigation from "../components/Navigation.jsx"
 import Footer from "../components/Footer.jsx"
 
-const MainLayout = ({children}) => {
+const MainLayout = ({ children }) => {
   return (
     <>
-      <Navigation/>
+      <Navigation />
       <div>{children}</div>
-      <Footer/>
+      <Footer />
     </>
   )
 }

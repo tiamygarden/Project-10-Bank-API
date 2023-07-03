@@ -1,7 +1,7 @@
 import MainLayout from "../layouts/MainLayout.jsx"
-import {useDispatch} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import {signIn, loadProfile} from "../stores/auth.js"
-import {useState} from "react"
+import { useEffect, useState } from "react"
 import {store} from "../App.jsx"
 import { useNavigate } from 'react-router-dom'
 
@@ -11,6 +11,14 @@ const SignIn = () => {
   const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const token = useSelector(state => state.auth.token)
+  useEffect(() => {
+    if(token) {
+      dispatch(loadProfile())
+      navigate('/Profile')
+    }
+  }, [token, dispatch, navigate])
 
   async function signInAction() {
     if(isLoading) { return }

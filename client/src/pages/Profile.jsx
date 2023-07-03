@@ -1,20 +1,98 @@
 import MainLayout from "../layouts/MainLayout.jsx"
-// import {useState} from "react"
-import {useSelector} from "react-redux"
+import { useEffect, useState } from "react"
 import {useNavigate } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import { loadProfile, updateProfile } from "../stores/auth.js"
 
 const Profile = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const profile = useSelector(state => state.auth.profile)
-  // const [firstName, setFirstName] = useState(profile?.firstName || '')
-  // const [lastName, setLastName] = useState(profile?.lastName || '')
+  const [editing, setEditing] = useState(false)
+  const [editedFirstName, setEditedFirstName] = useState('')
+  const [editedLastName, setEditedLastName] = useState('')
+
+  const token = useSelector(state => state.auth.token)
+  useEffect(() => {
+    if(token) {
+      dispatch(loadProfile())
+      navigate('/Profile')
+    }
+  }, [token, dispatch, navigate, profile])
+
+  async function handleSaveClick () {
+    await dispatch(updateProfile({
+      firstName: editedFirstName,
+      lastName: editedLastName,
+    }))
+    setEditing(false)
+  }
+
+  function handleCancelClick() {
+    setEditing(false)
+    setEditedFirstName(profile.firstName)
+    setEditedLastName(profile.lastName)
+  }
+
+  function handleEditNameClick () {
+    setEditing(true)
+    setEditedFirstName(profile.firstName)
+    setEditedLastName(profile.lastName)
+  }
 
   return (
     <MainLayout>
       <div className="bg-dark height-85">
-        <h2 className="white pt-5 pb-5">Welcome back
-          <br/>{profile?.firstName} {profile?.lastName}!</h2>
-        <button className="edit-button mb-5">Edit Name</button>
+        <h2 className="white pt-5">Welcome back</h2>
+        {editing ? (
+          <div className="inline">
+            <div className="input-wrapper">
+              <label>
+                <input
+                  type="text"
+                  value={editedFirstName}
+                  onChange={(e) => setEditedFirstName(e.target.value)}
+                  placeholder="Firstname"
+                />
+              </label>
+            </div>
+            <div className="input-wrapper">
+              <label>
+                <input
+                  type="text"
+                  value={editedLastName}
+                  onChange={(e) => setEditedLastName(e.target.value)}
+                  placeholder="Lastname"
+                />
+              </label>
+            </div>
+            <br />
+            <div className="inline">
+              <button className="edit-button mr-5 mb-5" onClick={handleSaveClick}>
+                Save
+              </button>
+              <button className="edit-button mb-5" onClick={handleCancelClick}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div className="inline">
+              <h2 className="white pt-5 pb-5">
+                {profile?.firstName}
+              </h2>
+              <h2 className="white pt-5 pb-5">
+                {profile?.lastName}!
+              </h2>
+            </div>
+            {!editing && (
+              <button className="edit-button mb-5" onClick={handleEditNameClick}>
+        Edit Name
+              </button>
+            )}
+          </div>
+        )}
 
         <h2 className="sr-only">Account</h2>
         <div className="account-content-wrapper">
