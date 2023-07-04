@@ -38,43 +38,41 @@ const SignIn = () => {
 
   return (
     <MainLayout>
-      <>
-        <div className="main flex bg-dark height-85">
-          <section className="sign-in-content">
-            <i className="fa fa-user-circle sign-in-icon"></i>
-            <h1>Sign In</h1>
-            <form>
-              <div className="input-wrapper">
-                <label>
+      <div className="bg-stone-300 flex-grow flex items-center">
+        <section className="md:max-w-xs bg-white mx-auto">
+          <i className="fa fa-user-circle"></i>
+          <h1>Sign In</h1>
+          <form>
+            <div className="input-wrapper">
+              <label>
               Email
-                  <input type="email" value={email} autoComplete="email" onChange={(e) => setEmail(e.target.value)}/>
-                </label>
-              </div>
-              <div className="input-wrapper">
-                <label>
+                <input type="email" value={email} autoComplete="email" onChange={(e) => setEmail(e.target.value)}/>
+              </label>
+            </div>
+            <div className="input-wrapper">
+              <label>
               Password
-                  <input type="password" value={password} autoComplete="current-password"
-                    onChange={(e) => setPassword(e.target.value)}/>
-                </label>
-              </div>
-              <div className="input-remember">
-                <label>
-                  <input type="checkbox"/>
+                <input type="password" value={password} autoComplete="current-password"
+                  onChange={(e) => setPassword(e.target.value)}/>
+              </label>
+            </div>
+            <div className="input-remember">
+              <label>
+                <input type="checkbox"/>
               Remember me
-                </label>
-              </div>
-              <button
-                type="button"
-                onClick={signInAction}
-                className="sign-in-button"
-                disabled={isLoading}
-              >
-                { isLoading ? 'Loading...': 'Sign In' }
-              </button>
-            </form>
-          </section>
-        </div>
-      </>
+              </label>
+            </div>
+            <button
+              type="button"
+              onClick={signInAction}
+              className="sign-in-button"
+              disabled={isLoading}
+            >
+              { isLoading ? 'Loading...': 'Sign In' }
+            </button>
+          </form>
+        </section>
+      </div>
     </MainLayout>
   )
 }
