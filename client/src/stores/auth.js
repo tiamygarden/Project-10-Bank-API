@@ -1,10 +1,6 @@
 import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { api } from "../composable/useApi.jsx"
 
-const initialState = {
-  profile: null,
-  token: localStorage.getItem("token") || null
-}
 
 export const signIn = createAsyncThunk("auth/signIn", async payload => {
   const response = await api("user/login", { body: JSON.stringify(payload) })
@@ -34,7 +30,10 @@ const logoutAction = createAction("auth/logout")
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: { ...initialState },
+  initialState: {
+    profile: null,
+    token: localStorage.getItem("token") || null
+  },
   reducers: {},
 
   extraReducers: (builder) => {
