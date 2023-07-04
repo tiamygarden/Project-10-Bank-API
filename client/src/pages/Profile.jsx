@@ -1,6 +1,6 @@
 import MainLayout from "../layouts/MainLayout.jsx"
 import { useEffect, useState } from "react"
-import {useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { loadProfile, updateProfile } from "../stores/auth.js"
 
@@ -9,21 +9,23 @@ const Profile = () => {
   const dispatch = useDispatch()
   const profile = useSelector(state => state.auth.profile)
   const [editing, setEditing] = useState(false)
-  const [editedFirstName, setEditedFirstName] = useState('')
-  const [editedLastName, setEditedLastName] = useState('')
+  const [editedFirstName, setEditedFirstName] = useState("")
+  const [editedLastName, setEditedLastName] = useState("")
 
   const token = useSelector(state => state.auth.token)
   useEffect(() => {
-    if(token) {
+    if (token && !profile) {
       dispatch(loadProfile())
-      navigate('/Profile')
+      navigate("/Profile")
+    } else if (!profile) {
+      navigate("/sign-in")
     }
   }, [token, dispatch, navigate, profile])
 
-  async function handleSaveClick () {
+  async function handleSaveClick() {
     await dispatch(updateProfile({
       firstName: editedFirstName,
-      lastName: editedLastName,
+      lastName: editedLastName
     }))
     setEditing(false)
   }
@@ -34,7 +36,7 @@ const Profile = () => {
     setEditedLastName(profile.lastName)
   }
 
-  function handleEditNameClick () {
+  function handleEditNameClick() {
     setEditing(true)
     setEditedFirstName(profile.firstName)
     setEditedLastName(profile.lastName)
@@ -88,7 +90,7 @@ const Profile = () => {
             </div>
             {!editing && (
               <button className="edit-button mb-5" onClick={handleEditNameClick}>
-        Edit Name
+                Edit Name
               </button>
             )}
           </div>
@@ -103,7 +105,9 @@ const Profile = () => {
               <p className="account-amount-description">Available Balance</p>
             </div>
             <div className="account-content-wrapper cta">
-              <button className="transaction-button" onClick={() => navigate("./account/${account_ID}")}>View transactions</button>
+              <button className="transaction-button" onClick={() => navigate("./account/${account_ID}")}>View
+                transactions
+              </button>
             </div>
           </section>
           <section className="account">
@@ -113,7 +117,9 @@ const Profile = () => {
               <p className="account-amount-description">Available Balance</p>
             </div>
             <div className="account-content-wrapper cta">
-              <button className="transaction-button" onClick={() => navigate("./account/${account_ID}")}>View transactions</button>
+              <button className="transaction-button" onClick={() => navigate("./account/${account_ID}")}>View
+                transactions
+              </button>
             </div>
           </section>
           <section className="account">
@@ -123,7 +129,9 @@ const Profile = () => {
               <p className="account-amount-description">Current Balance</p>
             </div>
             <div className="account-content-wrapper cta">
-              <button className="transaction-button" onClick={() => navigate("./account/${account_ID}")}>View transactions</button>
+              <button className="transaction-button" onClick={() => navigate("./account/${account_ID}")}>View
+                transactions
+              </button>
             </div>
           </section>
         </div>
