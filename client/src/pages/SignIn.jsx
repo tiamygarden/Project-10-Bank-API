@@ -2,7 +2,6 @@ import MainLayout from "../layouts/MainLayout.jsx"
 import { useDispatch, useSelector } from "react-redux"
 import {signIn, loadProfile} from "../stores/auth.ts"
 import { useEffect, useState } from "react"
-import {store} from "../App.jsx"
 import { useNavigate } from 'react-router-dom'
 
 const SignIn = () => {
@@ -13,6 +12,8 @@ const SignIn = () => {
   const navigate = useNavigate()
 
   const token = useSelector(state => state.auth.token)
+  const profile = useSelector(state => state.auth.profile)
+
   useEffect(() => {
     if(token) {
       dispatch(loadProfile())
@@ -25,10 +26,10 @@ const SignIn = () => {
     setIsLoading(true)
     await dispatch(signIn({email, password}))
 
-    if(store.getState().auth.token) {
+    if(token) {
       await dispatch(loadProfile())
 
-      if(store.getState().auth.profile) {
+      if(profile) {
         navigate('/Profile')
       }
     }

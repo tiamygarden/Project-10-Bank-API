@@ -1,7 +1,6 @@
 import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { api } from "../composable/useApi.jsx"
 
-
 export const signIn = createAsyncThunk("auth/signIn", async payload => {
   const response = await api("user/login", { body: JSON.stringify(payload) })
 
@@ -27,7 +26,7 @@ export const logout = () => {
 
 const logoutAction = createAction("auth/logout")
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
   name: "auth",
   initialState: {
     profile: null,
