@@ -3,7 +3,7 @@ import { api } from "../composable/useApi.jsx"
 
 const initialState = {
   profile: null,
-  token: localStorage.getItem("token") || ""
+  token: localStorage.getItem("token") || null
 }
 
 export const signIn = createAsyncThunk("auth/signIn", async payload => {
@@ -34,7 +34,7 @@ const logoutAction = createAction("auth/logout")
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: {...initialState},
+  initialState: { ...initialState },
   reducers: {},
 
   extraReducers: (builder) => {
@@ -49,13 +49,11 @@ const authSlice = createSlice({
 
     builder.addCase(loadProfile.fulfilled, (state, action) => {
       state.profile = action.payload
-      state.firstName = action.payload.firstName
-      state.lastName = action.payload.lastName
     })
 
     builder.addCase(updateProfile.fulfilled, (state, action) => {
-      state.firstName = action.payload.firstName
-      state.lastName = action.payload.lastName
+      state.profile.firstName = action.payload.firstName
+      state.profile.lastName = action.payload.lastName
     })
 
     builder.addCase(logoutAction, (state) => {
