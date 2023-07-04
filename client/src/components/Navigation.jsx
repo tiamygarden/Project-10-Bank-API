@@ -6,9 +6,11 @@ import {logout} from "../stores/auth.js"
 const Navigation = () => {
   const profile = useSelector((state) => state.auth.profile)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   function handleLogout() {
     dispatch(logout())
+    navigate('/')
   }
 
   return (

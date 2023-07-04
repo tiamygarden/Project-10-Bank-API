@@ -66,8 +66,6 @@ const authSlice = createSlice({
       localStorage.removeItem("token") // Supprime le token du local storage lors de la déconnexion
       state = {...initialState}
 
-      const navigate = useNavigate()
-      navigate('/')
     })
   }
 })
