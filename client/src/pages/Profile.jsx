@@ -2,7 +2,7 @@ import MainLayout from "../layouts/MainLayout.jsx"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { loadProfile, updateProfile } from "../stores/auth.js"
+import { loadProfile, updateProfile } from "../stores/auth.ts"
 
 const Profile = () => {
   const navigate = useNavigate()

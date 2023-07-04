@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import logo from "../assets/img/argentBankLogo.png"
-import {logout} from "../stores/auth.js"
+import {logout} from "../stores/auth.ts"
 
 const Navigation = () => {
   const profile = useSelector((state) => state.auth.profile)

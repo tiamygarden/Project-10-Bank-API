@@ -27,7 +27,6 @@ export const logout = () => {
 
 const logoutAction = createAction("auth/logout")
 
-
 const authSlice = createSlice({
   name: "auth",
   initialState: {

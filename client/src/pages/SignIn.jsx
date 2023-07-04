@@ -1,6 +1,6 @@
 import MainLayout from "../layouts/MainLayout.jsx"
 import { useDispatch, useSelector } from "react-redux"
-import {signIn, loadProfile} from "../stores/auth.js"
+import {signIn, loadProfile} from "../stores/auth.ts"
 import { useEffect, useState } from "react"
 import {store} from "../App.jsx"
 import { useNavigate } from 'react-router-dom'
