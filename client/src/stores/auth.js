@@ -1,6 +1,7 @@
 import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { api } from "../composable/useApi.jsx"
 import { store } from "../App.jsx"
+import { useNavigate } from "react-router-dom"
 
 const initialState = {
   profile: null,
@@ -64,6 +65,9 @@ const authSlice = createSlice({
     builder.addCase(logoutAction, (state) => {
       localStorage.removeItem("token") // Supprime le token du local storage lors de la déconnexion
       state = {...initialState}
+
+      const navigate = useNavigate()
+      navigate('/')
     })
   }
 })
