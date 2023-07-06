@@ -22,14 +22,14 @@ const Navigation = () => {
   }
 
   return (
-    <div className="header flex items-center justify-between border">
-      <div className="logo">
+    <div className="px-5 py-1 flex items-center justify-between border">
+      <div className="max-w-[200px]">
         <Link to="/">
           <img src={logo} alt="Argent Bank Logo" />
         </Link>
       </div>
 
-      <div className="header-navlinks">
+      <div className="flex justify-between items-center gap-1">
         {profile ? (
           <>
             <i className="fa-solid fa-circle-user"></i>

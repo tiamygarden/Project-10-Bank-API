@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import {signIn, loadProfile} from "../stores/auth.ts"
 import { useEffect, useState } from "react"
 import { useNavigate } from 'react-router-dom'
+import Input from '../components/Input.jsx'
+import Button from '../components/Button.jsx'
 
 const SignIn = () => {
   const [email, setEmail] = useState('tony@stark.com')
@@ -38,38 +40,43 @@ const SignIn = () => {
 
   return (
     <MainLayout>
-      <div className="bg-stone-300 flex-grow flex items-center">
-        <section className="md:max-w-xs bg-white mx-auto">
-          <i className="fa fa-user-circle"></i>
-          <h1>Sign In</h1>
-          <form>
-            <div className="input-wrapper">
-              <label>
+      <div className="bg-dark flex-grow flex-1 items-center content-start">
+        <section className="box-border content-start md:max-w-sm bg-white mx-auto mt-8 p-6">
+          <div className="flex justify-center text-xl">
+            <i className="fa fa-user-circle"></i>
+          </div>
+          <h1 className="text-center text-2xl font-bold my-5">Sign In</h1>
+          <form className="w-full">
+            <div className="flex flex-col flex-wrap mb-1">
+              <label className="font-bold w-full m-0">
               Email
-                <input type="email" value={email} autoComplete="email" onChange={(e) => setEmail(e.target.value)}/>
+                <Input type="email" value={email} autoComplete="email"
+                  onChange={(e) => setEmail(e.target.value)} className="w-full p-1 text-sm mb-2"/>
               </label>
             </div>
-            <div className="input-wrapper">
-              <label>
+            <div className="flex flex-col text-left mb-1">
+              <label className="font-bold">
               Password
-                <input type="password" value={password} autoComplete="current-password"
-                  onChange={(e) => setPassword(e.target.value)}/>
+
+                <Input type="password" value={password} autoComplete="current-password"
+                  onChange={(e) => setPassword(e.target.value)} className="w-full p-1 text-sm mb-2"/>
               </label>
             </div>
-            <div className="input-remember">
-              <label>
-                <input type="checkbox"/>
+            <div className="flex p-1">
+              <label className="ml-0.5">
+                <input type="checkbox" className="mr-1 "/>
               Remember me
               </label>
             </div>
-            <button
-              type="button"
-              onClick={signInAction}
-              className="sign-in-button"
-              disabled={isLoading}
-            >
-              { isLoading ? 'Loading...': 'Sign In' }
-            </button>
+            <div className="flex justify-center">
+              <Button
+                type="button"
+                onClick={signInAction}
+                disabled={isLoading}
+              >
+                { isLoading ? 'Loading...': 'Sign In' }
+              </Button>
+            </div>
           </form>
         </section>
       </div>

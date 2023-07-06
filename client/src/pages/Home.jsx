@@ -21,23 +21,27 @@ const Home = () => {
         </div>
       </div>
       <section aria-description="Features" className="max-w-4xl mx-auto p-4">
-        <div className="flex flex-wrap -mx-4">
+        <div className="flex flex-wrap mx-4">
           <FeatureItem
             icon={iconChat}
             title="You are our #1 priority"
-            description="Need to talk to a representative? You can get in touch through our 24/7 chat or through a phone call in less than 5 minutes."
+            description="Need to talk to a representative? You can get in touch
+            through our 24/7 chat or through a phone call in less than 5
+            minutes."
           />
 
           <FeatureItem
             icon={iconMoney}
             title="More savings means higher rates"
-            description="The more you save with us, the higher your interest rate will be!"
+            description="The more you save with us, the higher your interest
+            rate will be!"
           />
 
           <FeatureItem
             icon={iconSecurity}
             title="Security you can trust"
-            description="We use top of the line encryption to make sure your data and money is always safe."
+            description="We use top of the line encryption to make sure your
+            data and money is always safe."
           />
         </div>
       </section>
