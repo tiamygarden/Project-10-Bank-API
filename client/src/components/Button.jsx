@@ -3,7 +3,7 @@ const Button = ({type, onClick, disabled, children}) => {
     <button
       type={type}
       onClick={onClick}
-      className="flex justify-center w-fit bg-abgreen rounded text-white font-bold p-2.5"
+      className="flex justify-center w-fit bg-white border-b-blue-600 rounded text-blue-600 font-bold p-2.5"
       disabled={disabled}
     >
       {children}

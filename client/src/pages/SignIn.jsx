@@ -40,7 +40,7 @@ const SignIn = () => {
 
   return (
     <MainLayout>
-      <div className="bg-dark flex-grow flex-1 items-center content-start">
+      <div className="bg-abgray flex-grow flex-1 items-center content-start">
         <section className="box-border content-start md:max-w-sm bg-white mx-auto mt-8 p-6">
           <div className="flex justify-center text-xl">
             <i className="fa fa-user-circle"></i>
