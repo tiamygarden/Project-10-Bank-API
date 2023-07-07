@@ -105,7 +105,7 @@ const Profile = () => {
             )}
           </div>
         )}
-        <section className="w-5/6 flex flex-col m-auto" aria-description="Account">
+        <section className="w-5/6 flex flex-col m-auto pb-24" aria-description="Account">
           <AccountItem
             title="Argent Bank Checking (x8349)"
             amount="$2,082.79"

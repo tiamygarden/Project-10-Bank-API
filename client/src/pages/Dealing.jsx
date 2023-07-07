@@ -1,67 +1,79 @@
+import { useState } from "react"
 import MainLayout from "../layouts/MainLayout.jsx"
+import { transactions } from "../data/transactions.json"
+import DealingEditCategory from "../components/DealingEditCategory.jsx"
 
 const Dealing = () => {
-  const transactions = [
-    {
-      date: "June 20th, 2020",
-      description: "Transaction 1",
-      amount: "$5.00",
-      balance: "$2087.79",
-    },
-    {
-      date: "June 21st, 2020",
-      description: "Transaction 2",
-      amount: "$10.00",
-      balance: "$2077.79",
-    },
-    {
-      date: "June 22nd, 2020",
-      description: "Transaction 3",
-      amount: "$15.00",
-      balance: "$2062.79",
-    },
-    {
-      date: "June 23rd, 2020",
-      description: "Transaction 4",
-      amount: "$20.00",
-      balance: "$2042.79",
-    },
-    {
-      date: "June 24th, 2020",
-      description: "Transaction 5",
-      amount: "$25.00",
-      balance: "$2017.79",
-    },
-    {
-      date: "June 25th, 2020",
-      description: "Transaction 6",
-      amount: "$30.00",
-      balance: "$1987.79",
-    },
-  ]
+  const [expandedRows, setExpandedRows] = useState([])
+
+  const toggleRowExpansion = (index) => {
+    if (expandedRows.includes(index)) {
+      setExpandedRows(expandedRows.filter((rowIndex) => rowIndex !== index))
+    } else {
+      setExpandedRows([...expandedRows, index])
+    }
+  }
 
   return (
     <MainLayout>
-      <div className="bg-dark height-85">
-        <h2 className="white pt-5 pb-5">Transactions</h2>
-        <div className="flex transaction-container m-auto">
-          <table className="bg-white table table-striped table-hover width-100">
-            <thead>
+      <div className="bg-abgray h-full">
+        <div className="flex w-full justify-center bg-white m-auto h-full py-5 mb-12">
+          <h2 className="pt-5 pb-5">Transactions</h2>
+        </div>
+        <div className="w-full md:w-5/6 m-auto h-full">
+          <table className="table-auto bg-white w-full border border-collapse mb-48">
+            <thead className="bg-abgray">
               <tr>
-                <th scope="col">DATE</th>
-                <th scope="col">DESCRIPTION</th>
-                <th scope="col">AMOUNT</th>
-                <th scope="col">BALANCE</th>
+                <th></th>
+                <th>DATE</th>
+                <th>DESCRIPTION</th>
+                <th>AMOUNT</th>
+                <th>BALANCE</th>
               </tr>
             </thead>
             <tbody>
               {transactions.map((transaction, index) => (
-                <tr key={index}>
-                  <td>{transaction.date}</td>
-                  <td>{transaction.description}</td>
-                  <td>{transaction.amount}</td>
-                  <td>{transaction.balance}</td>
-                </tr>
+                <>
+                  <tr
+                    className="group hover:bg-slate-100 h-[55px] border cursor-pointer text-center"
+                    onClick={() => toggleRowExpansion(index)}
+                    key={index}
+                  >
+                    <td>
+                      <i className={`fa-solid fa-chevron-${expandedRows.includes(index) ? 'up' : 'down'}`}></i>
+                    </td>
+                    <td>{transaction.date}</td>
+                    <td>{transaction.description}</td>
+                    <td>{transaction.amount}</td>
+                    <td>{transaction.balance}</td>
+                  </tr>
+                  {expandedRows.includes(index) && (
+                    <tr>
+                      <td colSpan="5" className="p-2 space-y-2">
+                        <div className="flex items-center">
+                          <span>Type: {transaction.type}</span>
+                        </div>
+                        <DealingEditCategory transaction={transaction} />
+                        <div className="flex items-center">
+                          <span>Notes:</span>
+                          {transaction.notes ? (
+                            <span className="ml-4">{transaction.notes}</span>
+                          ) : (
+                            <input
+                              type="text"
+                              className="ml-4 bg-white border border-gray-300 rounded py-1 px-2 w-full"
+                              placeholder="Enter notes"
+                              onChange={() => {}}
+                            />
+                          )}
+                          <span className="ml-4">
+                            <i className="fa-solid fa-pencil"></i>
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                </>
               ))}
             </tbody>
           </table>

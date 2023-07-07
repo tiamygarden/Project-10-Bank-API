@@ -34,7 +34,7 @@ const Navigation = () => {
           <>
             <i className="fa-solid fa-circle-user"></i>
             <Link to="/profile">
-              <p>{profile.firstName}</p>
+              <p className="pr-2">{profile.firstName}</p>
             </Link>
             <i className="fa-solid fa-right-from-bracket"></i>
             <Link to="/">
