@@ -1,9 +1,9 @@
 import { useState } from "react"
+import { useLocation } from "react-router-dom"
 import MainLayout from "../layouts/MainLayout.jsx"
 import { transactions } from "../data/transactions.json"
 import DealingEditCategory from "../components/DealingEditCategory.jsx"
-import { useLocation } from "react-router-dom"
-
+import DealingEditNote from "../components/DealingEditNote.jsx"
 
 const Dealing = () => {
   const [expandedRows, setExpandedRows] = useState([])
@@ -22,7 +22,7 @@ const Dealing = () => {
   return (
     <MainLayout>
       <div className="bg-abgray h-full">
-        <div className="flexw-full bg-white m-auto h-full py-5 mb-12">
+        <div className="flex w-full bg-white m-auto h-full py-5 mb-12">
           {selectedAccountItem && (
             <div className="flex w-full flex-col text-center">
               <h3 className="p-0 m-0 text-base font-normal">{selectedAccountItem.title}</h3>
@@ -70,16 +70,9 @@ const Dealing = () => {
                           {transaction.notes ? (
                             <span className="ml-4">{transaction.notes}</span>
                           ) : (
-                            <input
-                              type="text"
-                              className="ml-4 bg-white border border-gray-300 rounded py-1 px-2 w-full"
-                              placeholder="Enter notes"
-                              onChange={() => {}}
-                            />
+                            <DealingEditNote/>
+
                           )}
-                          <span className="ml-4">
-                            <i className="fa-solid fa-pencil"></i>
-                          </span>
                         </div>
                       </td>
                     </tr>
