@@ -2,13 +2,18 @@ import { useState } from "react"
 import MainLayout from "../layouts/MainLayout.jsx"
 import { transactions } from "../data/transactions.json"
 import DealingEditCategory from "../components/DealingEditCategory.jsx"
+import { useLocation } from "react-router-dom"
+
 
 const Dealing = () => {
   const [expandedRows, setExpandedRows] = useState([])
+  const location = useLocation()
+  const selectedAccountItem = location.state
 
   const toggleRowExpansion = (index) => {
     if (expandedRows.includes(index)) {
       setExpandedRows(expandedRows.filter((rowIndex) => rowIndex !== index))
+
     } else {
       setExpandedRows([...expandedRows, index])
     }
@@ -17,11 +22,17 @@ const Dealing = () => {
   return (
     <MainLayout>
       <div className="bg-abgray h-full">
-        <div className="flex w-full justify-center bg-white m-auto h-full py-5 mb-12">
-          <h2 className="pt-5 pb-5">Transactions</h2>
+        <div className="flexw-full bg-white m-auto h-full py-5 mb-12">
+          {selectedAccountItem && (
+            <div className="flex w-full flex-col text-center">
+              <h3 className="p-0 m-0 text-base font-normal">{selectedAccountItem.title}</h3>
+              <p className="m-0 text-4xl font-bold">{selectedAccountItem.amount}</p>
+              <p className="m-0">{selectedAccountItem.description}</p>
+            </div>
+          )}
         </div>
         <div className="w-full md:w-5/6 m-auto h-full">
-          <table className="table-auto bg-white w-full border border-collapse mb-48">
+          <table className="table-auto bg-white w-full border border-collapse mb-32">
             <thead className="bg-abgray">
               <tr>
                 <th></th>

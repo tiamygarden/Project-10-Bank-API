@@ -7,7 +7,7 @@ import Button from "../components/Button.jsx"
 import Input from "../components/Input.jsx"
 import AccountItem from "../components/AccountItem.jsx"
 
-const Profile = () => {
+const Profile = (_id) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const profile = useSelector((state) => state.auth.profile)
@@ -110,15 +110,65 @@ const Profile = () => {
             title="Argent Bank Checking (x8349)"
             amount="$2,082.79"
             description="Available Balance"
-          />
+          >
+            <button
+              type="button"
+              className="w-full md:max-w-[288px] h-12 m-auto border bg-[indigo] rounded text-white"
+              onClick={() =>
+                navigate(`/profile/account/${_id}`, {
+                  state: {
+                    title: "Argent Bank Checking (x8349)",
+                    amount: "$2,082.79",
+                    description: "Available Balance",
+                  },
+                })
+              }
+            >
+              View Description
+            </button>
+          </AccountItem>
           <AccountItem
             title="Argent Bank Savings (x6712)"
             amount="$10,928.42"
-            description="Available Balance"/>
+            description="Available Balance"
+          >
+            <button
+              type="button"
+              className="w-full md:max-w-[288px] h-12 m-auto border bg-[indigo] rounded text-white"
+              onClick={() =>
+                navigate(`/profile/account/${_id}`, {
+                  state: {
+                    title: "Argent Bank Savings (x6712)",
+                    amount: "$10,928.42",
+                    description: "Available Balance",
+                  },
+                })
+              }
+            >
+              View Description
+            </button>
+          </AccountItem>
           <AccountItem
             title="Argent Bank Credit Card (x8349)"
             amount="$184.30"
-            description="Current Balance"/>
+            description="Current Balance"
+          >
+            <button
+              type="button"
+              className="w-full md:max-w-[288px] h-12 m-auto border bg-[indigo] rounded text-white"
+              onClick={() =>
+                navigate(`/profile/account/${_id}`, {
+                  state: {
+                    title: "Argent Bank Credit Card (x8349)",
+                    amount: "$184.30",
+                    description: "Current Balance",
+                  },
+                })
+              }
+            >
+              View Description
+            </button>
+          </AccountItem>
         </section>
       </div>
     </MainLayout>
