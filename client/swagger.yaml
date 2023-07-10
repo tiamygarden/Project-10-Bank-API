@@ -17,7 +17,7 @@ paths:
       description: Retrieve all transactions for the current month
       parameters:
         - in: query
-          name:
+          name: ""
           description: Month (numeric value) for filtering transactions
           required: false
           type: integer
