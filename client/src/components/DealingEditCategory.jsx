@@ -16,12 +16,13 @@ const DealingEditCategory = ({transaction}) => {
         <select
           className="ml-4 bg-white border border-gray-300 rounded py-1 px-2"
           onChange={(e) => {handleChange(e)}}
+          value={categoryLabel}
         >
           <option value="">Select category</option>
           <option value="Food">Food</option>
-          <option selected={categoryLabel === 'Housing'}>Housing</option>
+          <option value="Housing">Housing</option>
           <option value="Transportation">Transportation</option>
-          <option selected={categoryLabel === 'Health'}>Health</option>
+          <option value="Health">Health</option>
           <option value="Education">Education</option>
           <option value="Leisure">Leisure</option>
           <option value="Savings">Savings</option>

@@ -62,7 +62,7 @@ const Dealing = () => {
                     <tr>
                       <td colSpan="5" className="p-2 space-y-2">
                         <div className="flex items-center">
-                          <span>Type: {transaction.type}</span>
+                          <span>Category type: {transaction.type}</span>
                         </div>
                         <DealingEditCategory transaction={transaction} />
                         <div className="flex items-center">
