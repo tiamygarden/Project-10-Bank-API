@@ -1,18 +1,27 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-const DealingEditNote = () => {
+const DealingEditNote = ({ initialNote }) => {
   const [note, setNote] = useState("")
   const [editing, setEditing] = useState(false)
 
-  const handleClick = () => {
-    if (editing) {
-      setNote("")
+  useEffect(() => {
+    if(initialNote) {
+      setNote(initialNote)
     }
+  }, [initialNote])
+
+
+  const handleClick = () => {
     setEditing(!editing)
   }
 
   const handleChange = (e) => {
     setNote(e.target.value)
+  }
+
+  const handleSave = () => {
+    // logique pour sauvegarder la note
+    setEditing(false)
   }
 
   return (
@@ -27,15 +36,21 @@ const DealingEditNote = () => {
             placeholder="Enter notes"
           />
           <span className="ml-2">
-            <i onClick={handleClick} className="fa-solid fa-pencil"></i>
+            <i onClick={handleSave} className="fa-solid fa-pencil"></i>
           </span>
         </>
       ) : (
         <>
-          <span className="ml-4">{note}</span>
-          <span className="ml-2">
+          {initialNote ? (
+            <>
+              <span className="ml-4">{note}</span>
+              <span className="ml-2">
+                <i onClick={handleClick} className="fa-solid fa-pencil"></i>
+              </span>
+            </>
+          ) : (
             <i onClick={handleClick} className="fa-solid fa-pencil"></i>
-          </span>
+          )}
         </>
       )}
     </div>

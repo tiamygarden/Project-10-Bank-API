@@ -17,7 +17,7 @@ paths:
       description: Retrieve all transactions for the current month
       parameters:
         - in: query
-          name: month
+          name:
           description: Month (numeric value) for filtering transactions
           required: false
           type: integer
@@ -54,8 +54,6 @@ paths:
       responses:
         '201':
           description: Transaction created successfully
-          schema:
-            $ref: '#/definitions/TransactionResponse'
         '400':
           description: Invalid Fields
         '500':
@@ -105,8 +103,6 @@ paths:
       responses:
         '200':
           description: Transaction updated successfully
-          schema:
-            $ref: '#/definitions/TransactionResponse'
         '404':
           description: Transaction not found
         '400':

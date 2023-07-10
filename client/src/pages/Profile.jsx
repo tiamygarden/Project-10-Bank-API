@@ -49,8 +49,8 @@ const Profile = (_id) => {
 
   return (
     <MainLayout>
-      <div className="flex justify-center content-center items-center flex-col w-full bg-abgray height-85 ">
-        <h2 className="text-3xl font-bold pt-5">Welcome back</h2>
+      <div className="flex justify-center content-center items-center flex-col w-full bg-dark height-85 ">
+        <h2 className="text-3xl text-white font-bold pt-5">Welcome back</h2>
         {editing ? (
           <div className="flex flex-wrap">
             <div className="flex flex-row w-full justify-center gap-1 pb-5">
@@ -89,10 +89,10 @@ const Profile = (_id) => {
           <div>
             <div className="flex justify-center flex-wrap content-center
             items-center w-full m-auto gap-2 pb-5 ">
-              <h2 className="text-3xl font-bold pt-0.5">
+              <h2 className="text-3xl text-white font-bold pt-0.5">
                 {profile?.firstName}
               </h2>
-              <h2 className="text-3xl font-bold pt-0.5">
+              <h2 className="text-3xl text-white font-bold pt-0.5">
                 {profile?.lastName}!
               </h2>
             </div>
@@ -105,7 +105,7 @@ const Profile = (_id) => {
             )}
           </div>
         )}
-        <section className="w-5/6 flex flex-col m-auto pb-24" aria-description="Account">
+        <section className="w-5/6 flex flex-col m-auto pb-16" aria-description="Account">
           <AccountItem
             title="Argent Bank Checking (x8349)"
             amount="$2,082.79"
@@ -113,7 +113,7 @@ const Profile = (_id) => {
           >
             <button
               type="button"
-              className="w-full md:max-w-[288px] h-12 m-auto border bg-blue-600 rounded text-white"
+              className="w-full md:max-w-[200px] h-12 m-auto border bg-abgreen rounded text-white"
               onClick={() =>
                 navigate(`/profile/account/${_id}`, {
                   state: {
@@ -134,7 +134,7 @@ const Profile = (_id) => {
           >
             <button
               type="button"
-              className="w-full md:max-w-[288px] h-12 m-auto border bg-blue-600 rounded text-white"
+              className="w-full md:max-w-[200px] h-12 m-auto border bg-abgreen rounded text-white"
               onClick={() =>
                 navigate(`/profile/account/${_id}`, {
                   state: {
@@ -155,7 +155,7 @@ const Profile = (_id) => {
           >
             <button
               type="button"
-              className="w-full md:max-w-[288px] h-12 m-auto border bg-blue-600 rounded text-white"
+              className="w-full md:max-w-[200px] h-12 m-auto border bg-abgreen rounded text-white"
               onClick={() =>
                 navigate(`/profile/account/${_id}`, {
                   state: {

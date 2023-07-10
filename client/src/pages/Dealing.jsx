@@ -67,12 +67,7 @@ const Dealing = () => {
                         <DealingEditCategory transaction={transaction} />
                         <div className="flex items-center">
                           <span>Notes:</span>
-                          {transaction.notes ? (
-                            <span className="ml-4">{transaction.notes}</span>
-                          ) : (
-                            <DealingEditNote/>
-
-                          )}
+                          <DealingEditNote initialNote={transaction.notes}/>
                         </div>
                       </td>
                     </tr>

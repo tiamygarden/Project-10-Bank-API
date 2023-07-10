@@ -4,7 +4,7 @@ import {signIn, loadProfile} from "../stores/auth.ts"
 import { useEffect, useState } from "react"
 import { useNavigate } from 'react-router-dom'
 import Input from '../components/Input.jsx'
-import Button from '../components/Button.jsx'
+// import Button from '../components/Button.jsx'
 
 const SignIn = () => {
   const [email, setEmail] = useState('tony@stark.com')
@@ -40,8 +40,8 @@ const SignIn = () => {
 
   return (
     <MainLayout>
-      <div className="bg-abgray flex-grow flex-1 items-center content-start">
-        <section className="box-border content-start md:max-w-sm bg-white mx-auto mt-8 p-6">
+      <div className="bg-dark flex-grow flex-1 items-center content-start">
+        <section className="box-border content-start max-w-xs bg-white mx-auto mt-8 p-6">
           <div className="flex justify-center text-xl">
             <i className="fa fa-user-circle"></i>
           </div>
@@ -69,13 +69,14 @@ const SignIn = () => {
               </label>
             </div>
             <div className="flex justify-center">
-              <Button
+              <button
                 type="button"
                 onClick={signInAction}
                 disabled={isLoading}
+                className="w-full bg-abgreen hover:border-abgreen border-transparent border hover:border-current hover:bg-white text-white hover:text-abgreen underline font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
                 { isLoading ? 'Loading...': 'Sign In' }
-              </Button>
+              </button>
             </div>
           </form>
         </section>

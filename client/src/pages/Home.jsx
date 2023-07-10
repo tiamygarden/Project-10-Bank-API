@@ -20,7 +20,7 @@ const Home = () => {
           </section>
         </div>
       </div>
-      <section aria-description="Features" className="w-full mx-auto p-4">
+      <section aria-description="Features" className="w-full mx-auto p-6">
         <div className="flex flex-wrap mx-4">
           <FeatureItem
             icon={iconChat}
@@ -29,14 +29,12 @@ const Home = () => {
             through our 24/7 chat or through a phone call in less than 5
             minutes."
           />
-
           <FeatureItem
             icon={iconMoney}
             title="More savings means higher rates"
             description="The more you save with us, the higher your interest
             rate will be!"
           />
-
           <FeatureItem
             icon={iconSecurity}
             title="Security you can trust"
