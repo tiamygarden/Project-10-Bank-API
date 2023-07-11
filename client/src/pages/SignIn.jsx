@@ -7,8 +7,9 @@ import Input from '../components/Input.jsx'
 // import Button from '../components/Button.jsx'
 
 const SignIn = () => {
-  const [email, setEmail] = useState('tony@stark.com')
-  const [password, setPassword] = useState('password123')
+  const [error, setError] = useState(null)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -24,18 +25,25 @@ const SignIn = () => {
   }, [token, dispatch, navigate])
 
   async function signInAction() {
-    if(isLoading) { return }
+    if (isLoading) { return }
     setIsLoading(true)
-    await dispatch(signIn({email, password}))
+    setError(null)
 
-    if(token) {
-      await dispatch(loadProfile())
-
-      if(profile) {
+    try {
+      const result = await dispatch(signIn({ email, password }))
+      if(result.error) {
+        setError('Invalid email or password.')
+      } else if(token) {
+        await dispatch(loadProfile())
+      }else if(profile) {
         navigate('/Profile')
       }
+
+    } catch (error) {
+      setError( 'An error occurred. Please try again later.')
+    } finally {
+      setIsLoading(false)
     }
-    setIsLoading(false)
   }
 
   return (
@@ -51,15 +59,14 @@ const SignIn = () => {
               <label className="font-bold w-full m-0">
               Email
                 <Input type="email" value={email} autoComplete="email"
-                  onChange={(e) => setEmail(e.target.value)} className="w-full p-1 text-sm mb-2"/>
+                  onChange={(e) => setEmail(e.target.value)}/>
               </label>
             </div>
             <div className="flex flex-col text-left mb-1">
               <label className="font-bold">
               Password
-
                 <Input type="password" value={password} autoComplete="current-password"
-                  onChange={(e) => setPassword(e.target.value)} className="w-full p-1 text-sm mb-2"/>
+                  onChange={(e) => setPassword(e.target.value)} />
               </label>
             </div>
             <div className="flex p-1">
@@ -68,7 +75,7 @@ const SignIn = () => {
               Remember me
               </label>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center flex-wrap">
               <button
                 type="button"
                 onClick={signInAction}
@@ -77,6 +84,11 @@ const SignIn = () => {
               >
                 { isLoading ? 'Loading...': 'Sign In' }
               </button>
+              { error && (
+                <div className="text-red-500 text-center mt-2">
+                  {error}
+                </div>
+              )}
             </div>
           </form>
         </section>
