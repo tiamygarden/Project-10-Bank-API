@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux"
-import {decrement, increment, reset} from "../stores/counter.js"
+import {decrement, increment, reset} from "../features/counter.js"
 import MainLayout from "../layouts/MainLayout.jsx"
 
 const Counter = () => {

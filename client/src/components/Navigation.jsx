@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import logo from "../assets/img/argentBankLogo.png"
-import { loadProfile, logout } from "../stores/auth.ts"
+import { loadProfile, logout } from "../features/auth.ts"
 import { useEffect } from "react"
 
 const Navigation = () => {
