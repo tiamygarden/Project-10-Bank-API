@@ -1,3 +1,4 @@
+import React from "react"
 import { useState } from "react"
 import { useLocation } from "react-router-dom"
 import MainLayout from "../layouts/MainLayout.jsx"
@@ -44,7 +45,7 @@ const Dealing = () => {
             </thead>
             <tbody>
               {transactions.map((transaction, index) => (
-                <>
+                <React.Fragment key={index}>
                   <tr
                     className="group hover:bg-slate-100 h-[55px] border cursor-pointer text-center"
                     onClick={() => toggleRowExpansion(index)}
@@ -59,7 +60,7 @@ const Dealing = () => {
                     <td>{transaction.balance}</td>
                   </tr>
                   {expandedRows.includes(index) && (
-                    <tr>
+                    <tr key={`expanded_${index}`}>
                       <td colSpan="5" className="p-2 space-y-2">
                         <div className="flex items-center">
                           <span>Category type: {transaction.type}</span>
@@ -72,7 +73,7 @@ const Dealing = () => {
                       </td>
                     </tr>
                   )}
-                </>
+                </React.Fragment>
               ))}
             </tbody>
           </table>
