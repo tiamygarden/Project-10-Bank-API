@@ -30,7 +30,8 @@ export const authSlice = createSlice({
   name: "auth",
   initialState: {
     profile: null,
-    token: localStorage.getItem("token") || null
+    token: localStorage.getItem("token") || null,
+    isLoadingProfile: false,
   },
   reducers: {},
 
@@ -44,8 +45,13 @@ export const authSlice = createSlice({
       console.log("REJECTED")
     })
 
+    builder.addCase(loadProfile.pending, (state) => {
+      state.isLoadingProfile = true 
+    })
+
     builder.addCase(loadProfile.fulfilled, (state, action) => {
       state.profile = action.payload
+      state.isLoadingProfile = false
     })
 
     builder.addCase(updateProfile.fulfilled, (state, action) => {

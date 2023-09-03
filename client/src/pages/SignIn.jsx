@@ -15,13 +15,16 @@ const SignIn = () => {
 
   const token = useSelector(state => state.auth.token)
   const profile = useSelector(state => state.auth.profile)
+  const isProfileLoading = useSelector(state => state.auth.isLoadingProfile)
 
   useEffect(() => {
     if(token) {
-      dispatch(loadProfile())
-      navigate('/Profile')
+      if (!isProfileLoading) {
+        navigate('/Profile')
+      }
+
     }
-  }, [token, dispatch, navigate])
+  }, [token, navigate])
 
   async function signInAction() {
     if (isLoading) { return }

@@ -3,8 +3,8 @@ import { useState } from "react"
 import { useLocation } from "react-router-dom"
 import MainLayout from "../layouts/MainLayout.jsx"
 import { transactions } from "../data/transactions.json"
-import DealingEditCategory from "../components/DealingEditCategory.jsx"
-import DealingEditNote from "../components/DealingEditNote.jsx"
+import DealingEditCategory from "../components/dealing/DealingEditCategory.jsx"
+import DealingEditNote from "../components/dealing/DealingEditNote.jsx"
 
 const Dealing = () => {
   const [expandedRows, setExpandedRows] = useState([])

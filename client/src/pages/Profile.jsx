@@ -1,8 +1,8 @@
 import MainLayout from "../layouts/MainLayout.jsx"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { updateProfile } from "../features/auth.ts"
+import { loadProfile, updateProfile } from "../features/auth.ts"
 import Button from "../components/Button.jsx"
 import Input from "../components/Input.jsx"
 import AccountItem from "../components/AccountItem.jsx"
@@ -14,6 +14,16 @@ const Profile = (_id) => {
   const [editing, setEditing] = useState(false)
   const [editedFirstName, setEditedFirstName] = useState("")
   const [editedLastName, setEditedLastName] = useState("")
+
+  const token = useSelector((state) => state.auth.token)
+  useEffect(() => {
+    if (token && !profile) {
+      dispatch(loadProfile())
+      navigate("/Profile")
+    } else if (!profile) {
+      navigate("/sign-in")
+    }
+  }, [token, dispatch, navigate, profile])
 
   async function handleSaveClick() {
     await dispatch(
